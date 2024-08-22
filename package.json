@@ -7,9 +7,14 @@
   "scripts": {},
   "devDependencies": {
     "@tsconfig/node20": "^20.1.4",
+    "@types/aws-lambda": "^8.10.143",
+    "@types/uuid": "^10.0.0",
     "typescript": "5.3.3"
   },
   "dependencies": {
-    "sst": "^3"
+    "@aws-sdk/client-dynamodb": "^3.635.0",
+    "@aws-sdk/lib-dynamodb": "^3.635.0",
+    "sst": "^3",
+    "uuid": "^10.0.0"
   }
 }
