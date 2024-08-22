@@ -64,3 +64,34 @@ npx aws-api-gateway-cli-test \
 --body='{"content":"hello auth world","attachment":"hello.jpg"}'
 
 
+------------------------------------------------------------
+TEST BILLING API
+------------------------------------------------------------
+
+npx aws-api-gateway-cli-test \
+--username='admin@example.com' \
+--password='Passw0rd!' \
+--user-pool-id='<USER_POOL_ID>' \
+--app-client-id='<USER_POOL_CLIENT_ID>' \
+--cognito-region='<COGNITO_REGION>' \
+--identity-pool-id='<IDENTITY_POOL_ID>' \
+--invoke-url='<API_ENDPOINT>' \
+--api-gateway-region='<API_REGION>' \
+--path-template='/billing' \
+--method='POST' \
+--body='{"source":"tok_visa","storage":21}'
+
+
+npx aws-api-gateway-cli-test \
+--username='admin@example.com' \
+--password='Passw0rd!' \
+--user-pool-id='us-east-1_x6iGDDWgB' \
+--app-client-id='59dkts1121fjrc2e5vke0gjthn' \
+--cognito-region='us-east-1' \
+--identity-pool-id='us-east-1:cb9b3425-cbed-4ace-ab16-c4b61be3b10a' \
+--invoke-url='https://tmqc78xbi0.execute-api.us-east-1.amazonaws.com' \
+--api-gateway-region='us-east-1' \
+--path-template='/billing' \
+--method='POST' \
+--body='{"source":"tok_visa","storage":21}'
+
