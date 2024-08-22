@@ -5,7 +5,12 @@ export const api = new sst.aws.ApiGatewayV2('Api', {
   transform: {
     route: {
       handler: {
+        // makes the table available to all our routes
         link: [table],
+      },
+      args: {
+        // tells our API that we want to use AWS_IAM across all our routes
+        auth: { iam: true },
       },
     },
   },

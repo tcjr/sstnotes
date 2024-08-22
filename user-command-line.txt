@@ -1,0 +1,66 @@
+------------------------------------------------------------
+CREATE A USER
+------------------------------------------------------------
+
+aws cognito-idp sign-up \
+  --region <COGNITO_REGION> \
+  --client-id <USER_POOL_CLIENT_ID> \
+  --username admin@example.com \
+  --password Passw0rd!
+
+
+aws cognito-idp sign-up \
+  --region us-east-1 \
+  --client-id 59dkts1121fjrc2e5vke0gjthn \
+  --username admin@example.com \
+  --password Passw0rd!
+
+
+------------------------------------------------------------
+CONFIRM A USER
+------------------------------------------------------------
+
+aws cognito-idp admin-confirm-sign-up \
+  --region <COGNITO_REGION> \
+  --user-pool-id <USER_POOL_ID> \
+  --username admin@example.com
+
+
+aws cognito-idp admin-confirm-sign-up \
+  --region us-east-1 \
+  --user-pool-id us-east-1_x6iGDDWgB \
+  --username admin@example.com
+
+
+------------------------------------------------------------
+TEST APIS WITH AUTH
+------------------------------------------------------------
+
+npx aws-api-gateway-cli-test \
+--user-pool-id='<USER_POOL_ID>' \
+--app-client-id='<USER_POOL_CLIENT_ID>' \
+--cognito-region='<COGNITO_REGION>' \
+--identity-pool-id='<IDENTITY_POOL_ID>' \
+--invoke-url='<API_ENDPOINT>' \
+--api-gateway-region='<API_REGION>' \
+--username='admin@example.com' \
+--password='Passw0rd!' \
+--path-template='/notes' \
+--method='POST' \
+--body='{"content":"hello world","attachment":"hello.jpg"}'
+
+
+npx aws-api-gateway-cli-test \
+--user-pool-id='us-east-1_x6iGDDWgB' \
+--app-client-id='59dkts1121fjrc2e5vke0gjthn' \
+--cognito-region='us-east-1' \
+--identity-pool-id='us-east-1:cb9b3425-cbed-4ace-ab16-c4b61be3b10a' \
+--invoke-url='https://tmqc78xbi0.execute-api.us-east-1.amazonaws.com' \
+--api-gateway-region='us-east-1' \
+--username='admin@example.com' \
+--password='Passw0rd!' \
+--path-template='/notes' \
+--method='POST' \
+--body='{"content":"hello auth world","attachment":"hello.jpg"}'
+
+
