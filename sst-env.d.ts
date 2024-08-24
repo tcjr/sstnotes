@@ -15,6 +15,10 @@ declare module "sst" {
       "name": string
       "type": "sst.aws.Dynamo"
     }
+    "ReactFrontend": {
+      "type": "sst.aws.StaticSite"
+      "url": string
+    }
     "StripeSecretKey": {
       "type": "sst.sst.Secret"
       "value": string
