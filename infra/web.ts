@@ -4,12 +4,24 @@ import { userPool, identityPool, userPoolClient } from './auth';
 
 const region = aws.getRegionOutput().name;
 
+let siteDomain = undefined;
+if ($app.stage === 'production') {
+  // The ARN is here: https://us-east-1.console.aws.amazon.com/acm/home?region=us-east-1#/certificates/list
+  const arn = new sst.Secret('ReactWebSecretARN');
+  siteDomain = {
+    dns: false,
+    name: 'react-notes.tcjr.org',
+    cert: arn.value,
+  };
+}
+
 export const reactFrontend = new sst.aws.StaticSite('ReactFrontend', {
   path: 'packages/react-frontend',
   build: {
     output: 'dist',
     command: 'npm run build',
   },
+  domain: siteDomain,
   environment: {
     VITE_REGION: region,
     VITE_API_URL: api.url,

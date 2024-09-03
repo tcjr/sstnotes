@@ -1,8 +1,21 @@
 import { secret, table } from './storage';
 
+let apiDomain = undefined;
+if ($app.stage === 'production') {
+  // The ARN is here: https://us-east-1.console.aws.amazon.com/acm/home?region=us-east-1#/certificates/list
+  const arn = new sst.Secret('ApiSecretARN');
+
+  apiDomain = {
+    dns: false,
+    name: 'notes-api.tcjr.org',
+    cert: arn.value,
+  };
+}
+
 // Create the API
 export const api = new sst.aws.ApiGatewayV2('Api', {
   cors: true,
+  domain: apiDomain,
   transform: {
     route: {
       handler: {

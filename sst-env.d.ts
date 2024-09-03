@@ -7,6 +7,10 @@ declare module "sst" {
       "type": "sst.aws.ApiGatewayV2"
       "url": string
     }
+    "ApiSecretARN": {
+      "type": "sst.sst.Secret"
+      "value": string
+    }
     "IdentityPool": {
       "id": string
       "type": "sst.aws.CognitoIdentityPool"
@@ -18,6 +22,10 @@ declare module "sst" {
     "ReactFrontend": {
       "type": "sst.aws.StaticSite"
       "url": string
+    }
+    "ReactWebSecretARN": {
+      "type": "sst.sst.Secret"
+      "value": string
     }
     "StripeSecretKey": {
       "type": "sst.sst.Secret"
