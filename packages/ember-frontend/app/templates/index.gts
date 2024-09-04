@@ -2,7 +2,7 @@ import RouteTemplate from 'ember-route-template';
 import Component from '@glimmer/component';
 import './index.css';
 
-class MyRouteComponent extends Component {
+class IndexComponent extends Component {
   <template>
     <div class='Home'>
       <div class='lander'>
@@ -13,4 +13,4 @@ class MyRouteComponent extends Component {
   </template>
 }
 
-export default RouteTemplate(MyRouteComponent);
+export default RouteTemplate(IndexComponent);

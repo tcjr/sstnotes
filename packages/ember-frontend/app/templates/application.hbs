@@ -1,14 +1,26 @@
 {{page-title "Ember Notes"}}
 
-<BsNavbar @collapseOnSelect={{true}} @bg="light" @expand="md" class="mb-3 px-3" as |navbar|>
-  <div class="navbar-header">
-    <a class="navbar-brand" href="#">Scratch</a>
-    <navbar.toggle />
-  </div>
-</BsNavbar>
+<div class="container py-3">
+  <BsNavbar @collapseOnSelect={{true}} @bg="light" @expand="md" class="mb-3 px-3" as |navbar|>
+    <div class="navbar-header">
+      <navbar.toggle />
+      <LinkTo @route="index" class="navbar-brand fw-bold text-muted">Scratch</LinkTo>
+    </div>
+    <navbar.content class="justify-content-end">
+      <navbar.nav as |nav|>
+        <nav.item>
+          <nav.linkTo @route="signup">Signup</nav.linkTo>
+        </nav.item>
+        <nav.item>
+          <nav.linkTo @route="login">Login</nav.linkTo>
+        </nav.item>
+      </navbar.nav>
+    </navbar.content>
+  </BsNavbar>
 
-{{outlet}}
+  {{outlet}}
 
+</div>
 {{!-- <EnvInfo /> --}}
 
 <div id="ember-bootstrap-wormhole"></div>
