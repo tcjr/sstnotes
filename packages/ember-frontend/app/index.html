@@ -29,6 +29,12 @@
       href="{{rootURL}}assets/ember-frontend.css"
     />
 
+    <!-- https://github.com/vitejs/vite/issues/1502#issuecomment-758822680 -->
+    <script>
+      window.global = window;
+      var exports = {};
+    </script>
+
     {{content-for "head-footer"}}
   </head>
   <body>
