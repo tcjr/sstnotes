@@ -6,7 +6,10 @@ module.exports = function (defaults) {
   const app = new EmberApp(defaults, {
     'ember-cli-babel': { enableTypeScriptTransform: true },
 
-    // Add options here
+    'ember-bootstrap': {
+      importBootstrapCSS: false,
+      insertEmberWormholeElementToDom: false,
+    },
   });
 
   const { Webpack } = require('@embroider/webpack');

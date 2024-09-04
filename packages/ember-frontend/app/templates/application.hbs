@@ -1,7 +1,14 @@
 {{page-title "Ember Notes"}}
 
-<h2 id="title">Welcome to Ember</h2>
-
-<EnvInfo />
+<BsNavbar @collapseOnSelect={{true}} @bg="light" @expand="md" class="mb-3 px-3" as |navbar|>
+  <div class="navbar-header">
+    <a class="navbar-brand" href="#">Scratch</a>
+    <navbar.toggle />
+  </div>
+</BsNavbar>
 
 {{outlet}}
+
+{{!-- <EnvInfo /> --}}
+
+<div id="ember-bootstrap-wormhole"></div>
