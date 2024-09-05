@@ -5,9 +5,13 @@ import Form from 'ember-bootstrap/components/bs-form';
 import { service } from '@ember/service';
 import type SessionService from 'ember-frontend/services/session';
 import type RouterService from '@ember/routing/router-service';
+import { onError } from 'ember-frontend/utils/error';
+import { Auth } from 'aws-amplify';
+import { ISignUpResult } from 'amazon-cognito-identity-js';
 import './signup.css';
 
-const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+// NOTE: This won't withstand page refreshes on the confirmation step.
+//       A fix is described here: https://guide.sst.dev/chapters/signup-with-aws-cognito.html
 
 interface SignupFormSignature {
   Args: {
@@ -90,19 +94,43 @@ const ConfirmationForm = class extends Component<ConfirmationFormSignature> {
 };
 
 class SignupComponent extends Component {
+  @service declare session: SessionService;
+  @service declare router: RouterService;
+
   @tracked email = '';
   @tracked password = '';
   @tracked confirmPassword = '';
-  @tracked newUser: string | null = null;
+  @tracked newUser: ISignUpResult | null = null;
   @tracked confirmationCode = '';
 
   handleSignupSubmit = async () => {
-    await sleep(2000);
-    this.newUser = 'test';
+    const { email, password, confirmPassword } = this;
+    if (password !== confirmPassword) {
+      alert('Passwords do not match');
+      return;
+    }
+    try {
+      const newUser = await Auth.signUp({
+        username: email,
+        password: password,
+      });
+      this.newUser = newUser;
+    } catch (e) {
+      onError(e);
+    }
   };
 
   handleConfirmationSubmit = async () => {
-    await sleep(2000);
+    const { email, password, confirmationCode } = this;
+    try {
+      await Auth.confirmSignUp(email, confirmationCode);
+      await Auth.signIn(email, password);
+      this.session.isAuthenticated = true;
+
+      this.router.transitionTo('index');
+    } catch (e) {
+      onError(e);
+    }
   };
 
   <template>
