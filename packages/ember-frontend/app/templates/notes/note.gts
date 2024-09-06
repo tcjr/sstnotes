@@ -11,6 +11,7 @@ import type RouterService from '@ember/routing/router-service';
 import { API } from 'aws-amplify';
 import { s3Upload } from 'ember-frontend/utils/aws';
 import config from 'ember-frontend/config/environment';
+import { pageTitle } from 'ember-page-title';
 import './note.css';
 
 function formatFilename(str: string) {
@@ -114,6 +115,7 @@ class NotesNoteComponent extends Component<NotesNoteComponentSignature> {
   }
 
   <template>
+    {{pageTitle 'Note: ' this.note.noteId}}
     <div class='Notes'>
       {{#if this.note}}
         <Form @model={{this.note}} @onSubmit={{this.handleSubmit}} as |form|>

@@ -8,6 +8,7 @@ import type RouterService from '@ember/routing/router-service';
 import { onError } from 'ember-frontend/utils/error';
 import { Auth } from 'aws-amplify';
 import { ISignUpResult } from 'amazon-cognito-identity-js';
+import { pageTitle } from 'ember-page-title';
 import './signup.css';
 
 // NOTE: This won't withstand page refreshes on the confirmation step.
@@ -23,6 +24,7 @@ interface SignupFormSignature {
 
 const SignupForm = class extends Component<SignupFormSignature> {
   <template>
+    {{pageTitle 'Signup'}}
     <div ...attributes>
       <Form @model={{@data}} @onSubmit={{@onSignupSubmit}} as |form|>
 

@@ -10,6 +10,7 @@ import config from 'ember-frontend/config/environment';
 import { NoteType } from 'ember-frontend/models/note';
 import { API } from 'aws-amplify';
 import { s3Upload } from 'ember-frontend/utils/aws';
+import { pageTitle } from 'ember-page-title';
 import './new.css';
 
 function createNote(note: NoteType) {
@@ -60,6 +61,7 @@ class NotesNewComponent extends Component {
   }
 
   <template>
+    {{pageTitle 'New Note'}}
     <div class='NewNote'>
       <Form @model={{this}} @onSubmit={{this.handleSubmit}} as |form|>
         <div class='d-grid gap-2'>

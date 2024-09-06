@@ -6,6 +6,7 @@ import { Auth } from 'aws-amplify';
 import { service } from '@ember/service';
 import type SessionService from 'ember-frontend/services/session';
 import type RouterService from '@ember/routing/router-service';
+import { pageTitle } from 'ember-page-title';
 import './login.css';
 
 class LoginComponent extends Component {
@@ -46,6 +47,7 @@ class LoginComponent extends Component {
   };
 
   <template>
+    {{pageTitle 'Login'}}
     <div class='Login'>
       <Form @model={{this}} @onSubmit={{this.handleSubmit}} as |form|>
 
