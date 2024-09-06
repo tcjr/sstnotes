@@ -14,4 +14,5 @@ Router.map(function () {
     this.route('note', { path: '/:note_id' });
   });
   this.route('not-found', { path: '/*path' });
+  this.route('settings');
 });

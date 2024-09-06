@@ -2,7 +2,7 @@ import Component from '@glimmer/component';
 import { service } from '@ember/service';
 import type SessionService from 'ember-frontend/services/session';
 import BsNavbar from 'ember-bootstrap/components/bs-navbar';
-import BsButton from 'ember-bootstrap/components/bs-button';
+import { on } from '@ember/modifier';
 import { LinkTo } from '@ember/routing';
 import type RouterService from '@ember/routing/router-service';
 
@@ -35,9 +35,15 @@ export default class AppNav extends Component<AppNavSignature> {
       <navbar.content class='justify-content-end'>
         <navbar.nav as |nav|>
           {{#if this.session.isAuthenticated}}
+            {{! <nav.item>
+              <nav.linkTo @route='settings'>Settings</nav.linkTo>
+            </nav.item> }}
             <nav.item>
-              {{! TODO: see if ember-bootstrap has a non-routable version of nav.linkTo }}
-              <BsButton @type='light' @onClick={{this.logout}}>Logout</BsButton>
+              <span
+                role='button'
+                class='nav-link'
+                {{on 'click' this.logout}}
+              >Logout</span>
             </nav.item>
           {{else}}
             <nav.item>
