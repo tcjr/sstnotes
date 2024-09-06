@@ -11,6 +11,7 @@ Router.map(function () {
   this.route('signup');
   this.route('notes', function () {
     this.route('new');
+    this.route('note', { path: '/:note_id' });
   });
   this.route('not-found', { path: '/*path' });
 });
