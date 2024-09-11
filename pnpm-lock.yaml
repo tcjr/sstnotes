@@ -324,6 +324,9 @@ importers:
       '@types/aws-lambda':
         specifier: ^8.10.137
         version: 8.10.143
+      electrodb:
+        specifier: ^2.14.3
+        version: 2.14.3(@aws-sdk/client-dynamodb@3.635.0)
 
   packages/react-frontend:
     dependencies:
@@ -826,6 +829,12 @@ packages:
     resolution: {integrity: sha512-qm2iDJmCrxlQE2dsFG+TujPe7jw4DF+4RTrsFMhk/e3lOl3MAzQ6Fc2kXtgeUcVrZVFTL8fQvXE1ByYyI6WbCw==}
     engines: {node: '>= 10.0.0'}
 
+  '@aws-sdk/lib-dynamodb@3.395.0':
+    resolution: {integrity: sha512-HNOx+XmG3RXVOj2Z9oH0fDmE6bYmQND5WgVHfYOx7xqRWHEOyt8cNlZVktzPiK9XDNNQbG2qm98ux8We2e44eA==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      '@aws-sdk/client-dynamodb': ^3.0.0
+
   '@aws-sdk/lib-dynamodb@3.635.0':
     resolution: {integrity: sha512-EEuurFULGzHYA1gk1uNXclkw38TFgFhzO1hKu6FchjeLv7mw1Z9Pj5hkGjmNOqesQDjSfYbEXs3JI2jYWwp7Iw==}
     engines: {node: '>=16.0.0'}
@@ -1122,6 +1131,10 @@ packages:
   '@aws-sdk/util-defaults-mode-node@3.186.0':
     resolution: {integrity: sha512-N6O5bpwCiE4z8y7SPHd7KYlszmNOYREa+mMgtOIXRU3VXSEHVKVWTZsHKvNTTHpW0qMqtgIvjvXCo3vsch5l3A==}
     engines: {node: '>= 10.0.0'}
+
+  '@aws-sdk/util-dynamodb@3.395.0':
+    resolution: {integrity: sha512-hc97G4f75+xoOn2stERwORvsuugZ6mYPJIdCuaapxWFckqHc8H0jBnEFA1z8XbPVIZdvtS23ixcXOOM4TBWXuA==}
+    engines: {node: '>=14.0.0'}
 
   '@aws-sdk/util-dynamodb@3.635.0':
     resolution: {integrity: sha512-j0xMQRgRrdZmdlrFjan5z7eJUcK0TboW2BTMB2TYo/tZw5DT8f7PIs/e3TTndPRGfzTUwggopd9+lAm5Wk4hQA==}
@@ -5387,6 +5400,9 @@ packages:
   ee-first@1.1.1:
     resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
 
+  electrodb@2.14.3:
+    resolution: {integrity: sha512-nTTM2kRnKPl0plxELNkaF1Fvvv4SwfTGqUyUHtH7WugizaUaxuJWCBGszWCrYEmxfTisfzByZNbhbyVioYrAIQ==}
+
   electron-to-chromium@1.5.13:
     resolution: {integrity: sha512-lbBcvtIJ4J6sS4tb5TLp1b4LyfCdMkwStzXPyAgVgTRAsep4bvrAGaBOP7ZJtQMNJpSQ9SqG4brWOroNaQtm7Q==}
 
@@ -7087,6 +7103,9 @@ packages:
 
   jsonify@0.0.1:
     resolution: {integrity: sha512-2/Ki0GcmuqSrgFyelQq9M05y7PS0mEwuIzrf3f1fPqkVDVRvZrPZtVSMHxdgo8Aq0sxAOb/cr2aqqA3LeWHVPg==}
+
+  jsonschema@1.2.7:
+    resolution: {integrity: sha512-3dFMg9hmI9LdHag/BRIhMefCfbq1hicvYMy8YhZQorAdzOzWz7NjniSpn39yjpzUAMIWtGyyZuH2KNBloH7ZLw==}
 
   keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
@@ -11458,6 +11477,12 @@ snapshots:
     dependencies:
       tslib: 1.14.1
 
+  '@aws-sdk/lib-dynamodb@3.395.0(@aws-sdk/client-dynamodb@3.635.0)':
+    dependencies:
+      '@aws-sdk/client-dynamodb': 3.635.0
+      '@aws-sdk/util-dynamodb': 3.395.0
+      tslib: 2.6.3
+
   '@aws-sdk/lib-dynamodb@3.635.0(@aws-sdk/client-dynamodb@3.635.0)':
     dependencies:
       '@aws-sdk/client-dynamodb': 3.635.0
@@ -11946,6 +11971,10 @@ snapshots:
       '@aws-sdk/node-config-provider': 3.186.0
       '@aws-sdk/property-provider': 3.186.0
       '@aws-sdk/types': 3.186.0
+      tslib: 2.6.3
+
+  '@aws-sdk/util-dynamodb@3.395.0':
+    dependencies:
       tslib: 2.6.3
 
   '@aws-sdk/util-dynamodb@3.635.0(@aws-sdk/client-dynamodb@3.635.0)':
@@ -15108,26 +15137,6 @@ snapshots:
       - '@babel/core'
       - supports-color
 
-  '@types/ember@4.0.11':
-    dependencies:
-      '@types/ember__application': 4.0.11(@babel/core@7.25.2)
-      '@types/ember__array': 4.0.10(@babel/core@7.25.2)
-      '@types/ember__component': 4.0.22(@babel/core@7.25.2)
-      '@types/ember__controller': 4.0.12(@babel/core@7.25.2)
-      '@types/ember__debug': 4.0.8(@babel/core@7.25.2)
-      '@types/ember__engine': 4.0.11(@babel/core@7.25.2)
-      '@types/ember__error': 4.0.6
-      '@types/ember__object': 4.0.12(@babel/core@7.25.2)
-      '@types/ember__polyfills': 4.0.6
-      '@types/ember__routing': 4.0.22(@babel/core@7.25.2)
-      '@types/ember__runloop': 4.0.10
-      '@types/ember__service': 4.0.9(@babel/core@7.25.2)
-      '@types/ember__string': 3.16.3
-      '@types/ember__template': 4.0.7
-      '@types/ember__test': 4.0.6(@babel/core@7.25.2)
-      '@types/ember__utils': 4.0.7
-      '@types/rsvp': 4.0.9
-
   '@types/ember@4.0.11(@babel/core@7.25.2)':
     dependencies:
       '@types/ember__application': 4.0.11(@babel/core@7.25.2)
@@ -15154,7 +15163,7 @@ snapshots:
   '@types/ember__application@4.0.11(@babel/core@7.25.2)':
     dependencies:
       '@glimmer/component': 1.1.2(@babel/core@7.25.2)
-      '@types/ember': 4.0.11
+      '@types/ember': 4.0.11(@babel/core@7.25.2)
       '@types/ember__engine': 4.0.11(@babel/core@7.25.2)
       '@types/ember__object': 4.0.12(@babel/core@7.25.2)
       '@types/ember__owner': 4.0.9
@@ -15245,10 +15254,6 @@ snapshots:
       - '@babel/core'
       - supports-color
 
-  '@types/ember__runloop@4.0.10':
-    dependencies:
-      '@types/ember': 4.0.11
-
   '@types/ember__runloop@4.0.10(@babel/core@7.25.2)':
     dependencies:
       '@types/ember': 4.0.11(@babel/core@7.25.2)
@@ -15275,10 +15280,6 @@ snapshots:
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
-
-  '@types/ember__utils@4.0.7':
-    dependencies:
-      '@types/ember': 4.0.11
 
   '@types/ember__utils@4.0.7(@babel/core@7.25.2)':
     dependencies:
@@ -17630,6 +17631,13 @@ snapshots:
       semver: 6.3.1
 
   ee-first@1.1.1: {}
+
+  electrodb@2.14.3(@aws-sdk/client-dynamodb@3.635.0):
+    dependencies:
+      '@aws-sdk/lib-dynamodb': 3.395.0(@aws-sdk/client-dynamodb@3.635.0)
+      jsonschema: 1.2.7
+    transitivePeerDependencies:
+      - '@aws-sdk/client-dynamodb'
 
   electron-to-chromium@1.5.13: {}
 
@@ -20295,6 +20303,8 @@ snapshots:
       graceful-fs: 4.2.11
 
   jsonify@0.0.1: {}
+
+  jsonschema@1.2.7: {}
 
   keyv@4.5.4:
     dependencies:
