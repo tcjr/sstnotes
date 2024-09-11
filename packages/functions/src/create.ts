@@ -1,12 +1,11 @@
 import * as uuid from 'uuid';
-import { Resource } from 'sst';
 import { Util } from '@sstnotes/core/util';
-import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
-import { PutCommand, DynamoDBDocumentClient } from '@aws-sdk/lib-dynamodb';
-
-const dynamoDb = DynamoDBDocumentClient.from(new DynamoDBClient({}));
+import { Note } from './db-access';
 
 export const main = Util.handler(async (event) => {
+  const currentUserId =
+    event.requestContext.authorizer?.iam.cognitoIdentity.identityId;
+
   let data = {
     content: '',
     attachment: '',
@@ -16,20 +15,15 @@ export const main = Util.handler(async (event) => {
     data = JSON.parse(event.body);
   }
 
-  const params = {
-    TableName: Resource.Notes.name,
-    Item: {
-      // The attributes of the item to be created
-      //userId: '123', // The id of the author
-      userId: event.requestContext.authorizer?.iam.cognitoIdentity.identityId, // The id of the author
-      noteId: uuid.v1(), // A unique uuid
-      content: data.content, // Parsed from request body
-      attachment: data.attachment, // Parsed from request body
-      createdAt: Date.now(), // Current Unix timestamp
-    },
-  };
+  console.log('calling create with currentUserId:', currentUserId);
+  const resp = await Note.create({
+    userId: currentUserId,
+    noteId: uuid.v1(), // A unique uuid
+    content: data.content, // Parsed from request body
+    attachment: data.attachment, // Parsed from request body
+    createdAt: new Date().toISOString(),
+  }).go();
+  console.log('resp.data:', resp.data);
 
-  await dynamoDb.send(new PutCommand(params));
-
-  return JSON.stringify(params.Item);
+  return JSON.stringify(resp.data);
 });
