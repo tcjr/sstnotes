@@ -2,7 +2,7 @@
   "name": "@sstnotes/functions",
   "version": "0.0.0",
   "dependencies": {
-    "@sstnotes/core": "*",
+    "@sstnotes/core": "workspace:../core",
     "sst": "*",
     "stripe": "^16.8.0"
   },

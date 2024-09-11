@@ -1,0 +1,6 @@
+packages:
+  - "packages/core"
+  - "packages/functions"
+  - "packages/ember-frontend"
+  - "packages/react-frontend"
+  - "packages/scripts"
