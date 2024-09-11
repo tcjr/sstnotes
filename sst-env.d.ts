@@ -7,6 +7,10 @@ declare module "sst" {
       "type": "sst.aws.ApiGatewayV2"
       "url": string
     }
+    "DynamoData": {
+      "name": string
+      "type": "sst.aws.Dynamo"
+    }
     "EmberFrontend": {
       "type": "sst.aws.StaticSite"
       "url": string
@@ -14,10 +18,6 @@ declare module "sst" {
     "IdentityPool": {
       "id": string
       "type": "sst.aws.CognitoIdentityPool"
-    }
-    "Notes": {
-      "name": string
-      "type": "sst.aws.Dynamo"
     }
     "ReactFrontend": {
       "type": "sst.aws.StaticSite"
